@@ -13,4 +13,4 @@ services:
       - 8081:8080
       - 51820:51820
     environment:
-      - PUBKEY=GpfbBvrn+ctTqV4anuvjZw9C04cSnRX2kRUx3AunuX8=
+      - PUBKEY: $PUBKEY
