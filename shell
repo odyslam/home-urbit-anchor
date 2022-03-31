@@ -1,2 +1,0 @@
-#!/bin/bash
-sudo docker exec -it $(sudo docker ps -a|head -n 2|tail -n 1|grep -o "^\w*\b") /bin/bash
