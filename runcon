@@ -1,0 +1,5 @@
+#!/bin/bash
+sudo docker build . >> .build.tmp
+ID=`tail -n 1 .build.tmp | awk  '{print $3}'`
+rm  .build.tmp
+sudo docker run -p 9000:9000  --privileged ${ID}

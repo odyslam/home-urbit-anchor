@@ -1,3 +1,3 @@
-## Home-Urbit Anchor
+# WireGuard anchor server
 
-The easiest and most secure way to expose your home-urbit to the world.
+This Docker container generates a single-user Wireguard server using the $PUBKEY env var provided to it. 

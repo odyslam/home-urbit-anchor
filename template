@@ -1,0 +1,11 @@
+# name
+[Interface]
+PrivateKey = privkey
+Address = 10.13.13.2
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = pubkey
+AllowedIPs = 0.0.0.0/0
+Endpoint = serverip:51820
+PersistentKeepalive = 15
