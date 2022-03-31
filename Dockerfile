@@ -14,9 +14,9 @@ RUN curl -fsSL https://git.zx2c4.com/wireguard-go/snapshot/wireguard-go-${WG_GO_
     make -C wireguard-go-${WG_GO_TAG} install
 
 # Initial setup for webhook
-ENV WEBHOOK_VERSION "2.8.0"
+#ENV WEBHOOK_VERSION "2.8.0"
 
-RUN curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/archive/${WEBHOOK_VERSION}.tar.gz && \
+#RUN curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/archive/${WEBHOOK_VERSION}.tar.gz && \
     tar -xzf webhook.tar.gz --strip 1 &&  \
     go get -d && \
     go build -o /usr/local/bin/webhook && \
@@ -27,7 +27,7 @@ RUN curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/archive
 FROM alpine:3.14
 
 COPY --from=wireguard-go /usr/bin/wireguard-go /usr/bin/
-COPY --from=wireguard-go /usr/local/bin/webhook /usr/bin/
+#COPY --from=wireguard-go /usr/local/bin/webhook /usr/bin/
 
 # hadolint ignore=DL3018
 RUN apk add --update --no-cache \
