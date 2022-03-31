@@ -2,14 +2,19 @@ version: "3.7"
 
 services:
   vpn:
+    container_name: nativeplanet-anchor
     privileged: true
     cap_add:
     - NET_ADMIN
+    - SYS_MODULE
     image: nativeplanet-anchor:latest
     build: .
     restart: on-failure
     stop_grace_period: 1m
     ports:
-      - 51820:51820
+      - 51820:51820/udp
     environment:
-      - PUBKEY: $PUBKEY
+      - PUBKEY=${PUBKEY}
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1

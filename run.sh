@@ -146,9 +146,11 @@ chmod 600 "${config_root}"/*
 
 # Print new peer entry to interface config
 printf "\n[Peer]\nPublicKey = ${PUBKEY}\nAllowedIPs = \
-0.0.0.0/0\nPersistentKeepalive = 10\n" >> /etc/wireguard/wg0.conf
+10.13.13.2/32\n" >> /etc/wireguard/wg0.conf
 
+sysctl -w net.ipv4.ip_forward=1
 info "Bringing interface wg0 up..."
 wg-quick up wg0 >> /proc/1/fd/1
+echo "Server pubkey: ${SERVER_PUBKEY}" >> /proc/1/fd/1
 
 tail -f /dev/null

@@ -79,7 +79,7 @@ RUN patch -d /usr/src/app/wireguard-linux-compat-${WG_LINUX_TAG}/ -p0 < wireguar
 
 WORKDIR /usr/src/app/templates
 
-COPY server.conf peer.conf ./
+COPY server.conf ./
 
 WORKDIR /usr/src/app
 
