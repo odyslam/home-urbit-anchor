@@ -73,10 +73,6 @@ RUN make -C wireguard-tools-${WG_TOOLS_TAG}/src -j"$(nproc)" && \
 COPY wireguard-linux-compat.patch ./
 RUN patch -d /usr/src/app/wireguard-linux-compat-${WG_LINUX_TAG}/ -p0 < wireguard-linux-compat.patch
 
-# Set both of these to match your target device to pre-build modules
-# Leave at least one of them unset to postpone module building to app start
-ARG BALENA_DEVICE_TYPE=%%BALENA_MACHINE_NAME%%
-ARG BALENA_HOST_OS_VERSION=2.83.18+rev1
 
 # COPY buildmod.sh ./
 # RUN chmod +x ./buildmod.sh && ./buildmod.sh
@@ -96,16 +92,12 @@ COPY show-peer /usr/bin/
 
 RUN chmod +x run.sh /usr/bin/show-peer
 
-# COPY peer_1.conf /etc/wireguard/peer_1.conf
-COPY hook.json /etc/wireguard/hook.json
-COPY peer.sh /etc/wireguard/peer.sh
 COPY template /etc/wireguard/template
 COPY nextip /usr/sbin/nextip
 
 RUN chmod +x /usr/sbin/nextip
 
 VOLUME [ "/mnt/conf" ]
-EXPOSE 9000
 EXPOSE 51820
 
 CMD [ "/usr/src/app/run.sh" ]
