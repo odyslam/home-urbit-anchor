@@ -16,13 +16,13 @@ RUN curl -fsSL https://git.zx2c4.com/wireguard-go/snapshot/wireguard-go-${WG_GO_
 # Initial setup for webhook
 #ENV WEBHOOK_VERSION "2.8.0"
 
-#RUN curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/archive/${WEBHOOK_VERSION}.tar.gz && \
-    tar -xzf webhook.tar.gz --strip 1 &&  \
-    go get -d && \
-    go build -o /usr/local/bin/webhook && \
-    apk del --purge build-deps && \
-    rm -rf /var/cache/apk/* && \
-    rm -rf /go
+# RUN curl -L --silent -o webhook.tar.gz https://github.com/adnanh/webhook/archive/${WEBHOOK_VERSION}.tar.gz && \
+#     tar -xzf webhook.tar.gz --strip 1 &&  \
+#     go get -d && \
+#     go build -o /usr/local/bin/webhook && \
+#     apk del --purge build-deps && \
+#     rm -rf /var/cache/apk/* && \
+#     rm -rf /go
 
 FROM alpine:3.14
 
@@ -67,9 +67,6 @@ RUN curl -fsSL https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-${
 RUN make -C wireguard-tools-${WG_TOOLS_TAG}/src -j"$(nproc)" && \
     make -C wireguard-tools-${WG_TOOLS_TAG}/src install
 
-# strip the kernel version check
-# https://forums.balena.io/t/using-wireguard-with-new-os-releases/344047/8
-# https://gist.github.com/mattmacleod/c6589fadeaaf83f2c7d75321d9172bbe
 COPY wireguard-linux-compat.patch ./
 RUN patch -d /usr/src/app/wireguard-linux-compat-${WG_LINUX_TAG}/ -p0 < wireguard-linux-compat.patch
 
