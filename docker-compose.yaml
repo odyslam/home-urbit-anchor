@@ -13,6 +13,8 @@ services:
     stop_grace_period: 1m
     ports:
       - 51820:51820/udp
+    volumes:
+      - ${HOME}/wg:/etc/wg
     environment:
       - PUBKEY=${PUBKEY}
     sysctls:
