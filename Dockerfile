@@ -71,8 +71,8 @@ COPY wireguard-linux-compat.patch ./
 RUN patch -d /usr/src/app/wireguard-linux-compat-${WG_LINUX_TAG}/ -p0 < wireguard-linux-compat.patch
 
 
-# COPY buildmod.sh ./
-# RUN chmod +x ./buildmod.sh && ./buildmod.sh
+COPY buildmod.sh ./
+RUN chmod +x ./buildmod.sh && ./buildmod.sh
 
 WORKDIR /usr/src/app/templates
 
