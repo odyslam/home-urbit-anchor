@@ -149,7 +149,6 @@ printf "\n[Peer]\nPublicKey = ${PUBKEY}\nAllowedIPs = \
 10.13.13.2/32\n" >> /etc/wireguard/wg0.conf
 
 # Pass pubkey to host
-mkdir -p /etc/wg
 echo ${SERVER_PUBKEY} > /etc/wg/wg_pub
 
 sysctl -w net.ipv4.ip_forward=1
