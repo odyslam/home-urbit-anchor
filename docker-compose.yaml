@@ -2,11 +2,11 @@ version: "3.7"
 
 services:
   vpn:
-    container_name: nativeplanet-anchor
+    image: odyslam/home-urbit-anchor
     privileged: true
     cap_add:
-    - NET_ADMIN
-    - SYS_MODULE
+      - NET_ADMIN
+      - SYS_MODULE
     image: nativeplanet-anchor:latest
     build: .
     restart: on-failure
