@@ -10,7 +10,7 @@ cleanup() {
 trap "cleanup" TERM INT QUIT EXIT
 
 info() {
-    echo "[INFO] $1"    
+    echo "[INFO] $1"
 }
 
 warn() {
@@ -96,7 +96,7 @@ then
 fi
 
 info "Assigning '${SERVER_HOST}' as host address..."
-sed -i "s|serverip|${SERVER_HOST}|g" /etc/wireguard/template 
+sed -i "s|serverip|${SERVER_HOST}|g" /etc/wireguard/template
 
 # restrict default file creation permissions
 umask 077
